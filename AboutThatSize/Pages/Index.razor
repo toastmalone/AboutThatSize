@@ -1,7 +1,46 @@
 ﻿@page "/"
 
-<h1>Hello, world!</h1>
+<div class="row">
+    <h1 class="display-1">About that size...</h1>
+</div>
+<div class="row">
+    <div class="col-5 float-right">
+        <div class="row justify-content-end">
+            <input @bind="SizeInput" class="form-control" />
+        </div>
+        <div class="row justify-content-end">
+            <select @bind="SizeInputUnit" class="custom-select">
+                @foreach (var item in SizeInputs)
+                {
+                    <option value="@item">@item</option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="col-auto">
+        <h4>is about...</h4>
+    </div>
+    <div class="col-5">
+        <div class="row justify-content-start">
+            <input @bind="SizeOutput" class="form-control"/>
+        </div>
+        <div class="row justify-content-start">
+            <select @bind="SizeOutput" class="custom-select">
+                @foreach (var item in SizeOutputs)
+                {
+                    <option value="@item">@item</option>
+                }
+            </select>
+        </div>
+    </div>
+</div>
 
-Welcome to your new app.
-
-<SurveyPrompt Title="How is Blazor working for you?" />
+@code
+{
+    private string SizeInput { get; set; }
+    private string SizeOutput { get; set; }
+    private string SizeInputUnit { get; set; }
+    private string SizeOutputUnit { get; set; }
+    private List<string> SizeInputs { get; set; } = new List<string>() { "Lb", "Ft", "Kg", "Cm" };
+    private List<string> SizeOutputs { get; set; } = new List<string>() { "Grapes", "Cats", "Dogs", "Cars" };
+}
