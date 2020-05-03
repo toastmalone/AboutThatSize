@@ -6,10 +6,10 @@
 <div class="row">
     <div class="col-5 float-right">
         <div class="row justify-content-end">
-            <input @bind="SizeInput" class="form-control" />
+            <input @bind-value="NormalSize" @bind-value:event="oninput" class="form-control customTextInput" />
         </div>
         <div class="row justify-content-end">
-            <select @bind="SizeInputUnit" class="custom-select">
+            <select @bind="SizeInputUnit" class="custom-select customSelectInput">
                 @foreach (var item in SizeInputs)
                 {
                     <option value="@item">@item</option>
@@ -22,10 +22,10 @@
     </div>
     <div class="col-5">
         <div class="row justify-content-start">
-            <input @bind="SizeOutput" class="form-control"/>
+            <input @bind-value="InsaneSize" @bind-value:event="oninput" class="form-control customTextInput"/>
         </div>
         <div class="row justify-content-start">
-            <select @bind="SizeOutput" class="custom-select">
+            <select @bind="SizeOutputUnit" class="custom-select customSelectInput">
                 @foreach (var item in SizeOutputs)
                 {
                     <option value="@item">@item</option>
@@ -37,10 +37,38 @@
 
 @code
 {
-    private string SizeInput { get; set; }
-    private string SizeOutput { get; set; }
+    private int normalSize;
+    private int NormalSize
+    {
+        get => normalSize;
+        set
+        {
+            normalSize = value;
+            PerformNormalToInsaneUnitConversion();
+        }
+    }
+    private int insaneSize;
+    private int InsaneSize
+    {
+        get => insaneSize;
+        set
+        {
+            insaneSize = value;
+            PerformInsaneToNormalUnitConversion();
+        }
+    }
     private string SizeInputUnit { get; set; }
     private string SizeOutputUnit { get; set; }
     private List<string> SizeInputs { get; set; } = new List<string>() { "Lb", "Ft", "Kg", "Cm" };
     private List<string> SizeOutputs { get; set; } = new List<string>() { "Grapes", "Cats", "Dogs", "Cars" };
+
+    private void PerformNormalToInsaneUnitConversion()
+    {
+        insaneSize = NormalSize * 24;
+    }
+
+    private void PerformInsaneToNormalUnitConversion()
+    {
+        normalSize = InsaneSize / 24;
+    }
 }

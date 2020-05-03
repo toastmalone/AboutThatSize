@@ -181,3 +181,12 @@ app {
         display: block;
     }
 }
+
+.customTextInput {
+    border-radius:0em;
+    border-bottom:none;
+}
+
+.customSelectInput {
+    border-radius: 0em;
+}
