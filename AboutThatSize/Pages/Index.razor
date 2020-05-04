@@ -38,39 +38,40 @@
 @code
 {
     @using AboutThatSize.Models;
-
+    @using AboutThatSize.Data;
+    @inject AboutThatSizeContext _aboutThatSizeContext; 
         private int normalSize;
-        private int NormalSize
+    private int NormalSize
+    {
+        get => normalSize;
+        set
         {
-            get => normalSize;
-            set
-            {
-                normalSize = value;
-                PerformNormalToInsaneUnitConversion();
-            }
+            normalSize = value;
+            PerformNormalToInsaneUnitConversion();
         }
-        private int insaneSize;
-        private int InsaneSize
+    }
+    private int insaneSize;
+    private int InsaneSize
+    {
+        get => insaneSize;
+        set
         {
-            get => insaneSize;
-            set
-            {
-                insaneSize = value;
-                PerformInsaneToNormalUnitConversion();
-            }
+            insaneSize = value;
+            PerformInsaneToNormalUnitConversion();
         }
-        private string SizeInputUnit { get; set; }
-        private int SizeOutputUnit { get; set; }
-        private List<string> SizeInputs { get; set; } = new List<string>() { "Lb", "Ft", "Kg", "Cm" };
-        private List<Item> SizeOutputs { get; set; } = new List<Item>() { new Item() { Name = "Banana", Mass = 183 } };
+    }
+    private string SizeInputUnit { get; set; }
+    private int SizeOutputUnit { get; set; }
+    private List<string> SizeInputs { get; set; } = new List<string>() { "Lb", "Ft", "Kg", "Cm" };
+    private List<Item> SizeOutputs { get; set; } = new List<Item>() { new Item() { Name = "Banana", Mass = 183 } };
 
-        private void PerformNormalToInsaneUnitConversion()
-        {
-            insaneSize = (int)(NormalSize * SizeOutputUnit);
-        }
+    private void PerformNormalToInsaneUnitConversion()
+    {
+        insaneSize = (int)(NormalSize * SizeOutputUnit);
+    }
 
-        private void PerformInsaneToNormalUnitConversion()
-        {
-            normalSize = InsaneSize / 24;
-        }
+    private void PerformInsaneToNormalUnitConversion()
+    {
+        normalSize = InsaneSize / 24;
+    }
     }
