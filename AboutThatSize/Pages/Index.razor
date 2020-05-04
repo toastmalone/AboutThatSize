@@ -62,7 +62,7 @@
         private string SizeInputUnit { get; set; }
         private int SizeOutputUnit { get; set; }
         private List<string> SizeInputs { get; set; } = new List<string>() { "Lb", "Ft", "Kg", "Cm" };
-        private List<Unit> SizeOutputs { get; set; } = new List<Unit>() { new Unit() { Name = "Banana", Mass = 183 } };
+        private List<Item> SizeOutputs { get; set; } = new List<Item>() { new Item() { Name = "Banana", Mass = 183 } };
 
         private void PerformNormalToInsaneUnitConversion()
         {
